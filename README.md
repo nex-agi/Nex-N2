@@ -1,0 +1,98 @@
+<div align="center">
+  <img src="./figures/NEX_logo.svg" width="20%"/>
+</div>
+
+---
+
+<div align="center">
+🤗 <a href="https://hf.co/collections/nex-agi/nex-n2"><b>Model</b></a>
+</div>
+
+# Nex-N2
+
+**An agentic model with Agentic Thinking.**
+
+Today, we are officially releasing and open-sourcing our next-generation model, **Nex-N2** — an agent model built for real-world productivity scenarios. With first-tier coding and agentic capabilities, Nex-N2 keeps driving complex, long-horizon tasks forward in real environments to deliver stable, end-to-end results.
+
+Over the past year, a paradigm shift led by Vibe Coding and Harness Engineering has been redefining the limits of LLM agents. From dialogue, to reasoning, to agents that execute long-horizon tasks with environmental feedback, the tasks models must handle keep growing harder, the contexts longer, and the environments more realistic. The core of next-generation model competition is no longer *whether a model can think*, but whether it can reliably and efficiently turn thinking into actions that are executable, verifiable, and iterable.
+
+Rather than treating reasoning, tool use, and environment execution as separate capabilities, Nex-N2 unifies them through an **Agentic Thinking** framework that connects requirement understanding, task planning, code implementation, environmental feedback, evaluation and debugging, and continuous iteration into a single closed loop. The framework has two parts:
+
+- **Adaptive Thinking** lets the model decide on its own when to think and how deeply — executing simple actions quickly while reasoning thoroughly on critical decisions.
+- **Coherent Thinking** carries one consistent reasoning paradigm across general reasoning and diverse agentic tasks, staying consistent across tasks and modalities to enable stable capability transfer.
+
+Across real agentic workflows — agentic coding, deep research, tool calling, and terminal execution — Nex-N2 reaches first-tier performance, with substantial gains over the previous-generation Nex-N1 on multiple authoritative benchmarks. In real productivity scenarios such as OpenClaw one-person-company workflows, end-to-end game development, and web and multimodal generation, it likewise demonstrates outstanding usability, robustness, and stability.
+
+## Open Source
+
+In keeping with our commitment to open source, we are releasing **Nex-N2-Pro** starting today. **Nex-N2-Mini is not open-sourced at this time** and will be released in a future update.
+
+- **Nex-N2-Pro:** [Hugging Face](https://huggingface.co/nex-agi/Nex-N2-Pro) | [ModelScope](https://www.modelscope.cn/models/nex-agi/Nex-N2-Pro)
+- **Nex-N2-Mini:** Coming soon
+- **Early Access:** [SiliconFlow](https://cloud.siliconflow.cn/me/models?target=nex-agi%2FNex-N2-Pro)
+
+We welcome developers and enterprises to integrate and try Nex-N2 and share their feedback.
+
+## Performance
+
+We evaluate Nex-N2 in real agentic workflows along three directions — agentic tasks, coding tasks, and general tasks — covering benchmarks across tool calling, search-based decision-making, software engineering, and terminal execution. Nex-N2-Pro delivers strong performance that keeps pace with top-tier models such as GPT-5.5 and Opus 4.7: it excels at coding (e.g., 75.3 on Terminal-Bench 2.1) and long-horizon tasks (1585 on GDPval), and shows especially strong generalization and competitiveness on newer benchmarks like SWE-Atlas and DeepSWE. On general capability and core reasoning, it stands on par with leading frontier models.
+
+![Nex-N2 Benchmark Overview](./figures/Nex-N2-Benchmark-white.png)
+
+Nex-N2 ships in two variants, both post-trained on the Qwen3.5 series: **Nex-N2-Pro** (built on `Qwen3.5-397B-A17B`) and **Nex-N2-Mini** (built on `Qwen3.5-35B-A3B-Base`), covering different latency and quality trade-offs. The table below reports their scores alongside leading proprietary and open models across our full evaluation suite.
+
+| Benchmark | **Nex-N2-Mini** | **Nex-N2-Pro** | GPT-5.5 | Opus 4.7 | Kimi-K2.6 | GLM-5.1 | MiniMax M3 | DeepSeek-V4-Pro |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Agent** |  |  |  |  |  |  |  |  |
+| BrowseComp | 74.1 | 83.7 | 84.4 | 79.8 | 83.2 | 79.3 | 83.5 | 83.4 |
+| GDPval | 1402 | 1585 | 1769 | 1753 | 1481 | 1535 | - | 1554 |
+| Toolathlon | 33.3 | 51.9 | 55.6 | 52.8 | 50.0 | 40.7 | - | 51.8 |
+| WildClawBench | 47.7 | 53.5 | 58.2 | 62.2 | - | 48.2 | - | 43.7 |
+| WideSearch | 62.0 | 75.6 | - | - | 80.8 | - | - | - |
+| TAU3 | 65.9 | 71.1 | - | - | - | 70.6 | - | - |
+| **Coding & SWE** |  |  |  |  |  |  |  |  |
+| SWE-Bench Pro | 50.2 | 58.8 | 58.6 | 64.3 | 58.6 | 58.4 | 59.0 | 55.4 |
+| Terminal-Bench 2.1 | 60.7 | 75.3 | 83.4 | 69.7 | - | 58.7 | 66.0 | 72.0 |
+| DeepSWE | 8.0 | 33.6 | 70 | 54 | 24 | 18 | - | 8 |
+| SWE-Bench Verified | 74.4 | 80.8 | 82.9 | 87.6 | 80.2 | - | 80.5 | 80.6 |
+| SWE Atlas QnA | 31.5 | 37.9 | 45.4 | 45.2 | - | - | 37.9 | - |
+| SWE Atlas RF | 30.0 | 32.9 | 44.8 | 48.6 | - | - | - | - |
+| SWE Atlas TW | 23.3 | 40.0 | 42.6 | 38.2 | - | - | 30.8 | - |
+| **General & Reasoning** |  |  |  |  |  |  |  |  |
+| GPQA Diamond | 82.6 | 90.7 | 93.6 | 94.2 | 90.5 | 86.2 | - | 90.1 |
+| IFEval | 89.1 | 94.0 | - | - | 94.5 | 94.5 | - | 91.9 |
+| Apex | 9.4 | 36.5 | - | - | 24.0 | 11.5 | - | 38.3 |
+
+## Usage
+
+### Local Deployment
+
+We recommend `sglang` for serving Nex-series models locally:
+
+```bash
+python -m sglang.launch_server --model-path /path/to/your/model
+```
+
+### Recommended Sampling Parameters
+
+For the best generation quality, we recommend the following sampling parameters:
+
+- `temperature`: 0.7
+- `top_p`: 0.95
+- `top_k`: 40
+
+### Function Calling
+
+Nex-series models support robust function-calling capabilities. To enable function calling, add the `--tool-call-parser qwen3_coder` flag when launching the server:
+
+```bash
+python -m sglang.launch_server --model-path /path/to/your/model --tool-call-parser qwen3_coder
+```
+
+### Reasoning Parser
+
+Nex-series models emit explicit reasoning traces. Add the `--reasoning-parser qwen3` flag to parse the reasoning content separately from the final response. It can be combined with the function-calling parser above:
+
+```bash
+python -m sglang.launch_server --model-path /path/to/your/model --tool-call-parser qwen3_coder --reasoning-parser qwen3
+```
