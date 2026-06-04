@@ -116,6 +116,49 @@ python -m sglang.launch_server \
   --mamba-scheduler-strategy extra_buffer
 ```
 
+### Docker Deployment
+
+We also provide a prebuilt Docker image with our customized `sglang` fork preinstalled: **`nexagi/sglang:v0.5.12`**. The launch command is the same as above.
+
+#### Nex-N2-Pro
+
+```bash
+# Multi-node (2 nodes). Run the same command on every node with:
+#   <node-rank> = 0 on the head node, 1 on the other node
+#   <node0-ip>  = IP of the head node (reachable from all others)
+docker run --gpus all --shm-size 32g --network host \
+  -v /path/to/your/model:/model \
+  nexagi/sglang:v0.5.12 \
+  python3 -m sglang.launch_server \
+    --model-path /model \
+    --tp 16 \
+    --nnodes 2 \
+    --node-rank <node-rank> \
+    --dist-init-addr <node0-ip>:20000 \
+    --host 0.0.0.0 --port 30000 \
+    --reasoning-parser qwen3 \
+    --tool-call-parser qwen3_coder \
+    --mamba-scheduler-strategy extra_buffer
+```
+
+#### Nex-N2-mini
+
+Single node with 2× H100:
+
+```bash
+docker run --gpus all --shm-size 32g --ipc=host \
+  -p 30000:30000 \
+  -v /path/to/your/model:/model \
+  nexagi/sglang:v0.5.12 \
+  python3 -m sglang.launch_server \
+    --model-path /model \
+    --tp 2 \
+    --host 0.0.0.0 --port 30000 \
+    --reasoning-parser qwen3 \
+    --tool-call-parser qwen3_coder \
+    --mamba-scheduler-strategy extra_buffer
+```
+
 ### Recommended Sampling Parameters
 
 For the best generation quality, we recommend the following sampling parameters:
