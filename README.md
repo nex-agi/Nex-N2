@@ -5,7 +5,10 @@
 ---
 
 <div align="center">
-🤗 <a href="https://hf.co/collections/nex-agi/nex-n2"><b>Model</b></a>
+🤗 <a href="https://hf.co/collections/nex-agi/nex-n2"><b>Model</b></a>&nbsp&nbsp | &nbsp&nbsp
+💻 <a href="GitHub - nex-agi/Nex-N2"><b>Github</b></a>&nbsp&nbsp | &nbsp&nbsp
+🧭 <a href="https://www.modelscope.cn/models/nex-agi/Nex-N2-Pro"><b>ModelScope</b></a>&nbsp&nbsp | &nbsp&nbsp
+🚀 <a href="https://nex-agi.com"><b>Nex-AGI</b></a>
 </div>
 
 # Nex-N2
