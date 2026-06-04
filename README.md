@@ -67,7 +67,15 @@ Nex-N2 ships in two variants, both post-trained on the Qwen3.5 series: **Nex-N2-
 
 ### Local Deployment
 
-We recommend `sglang` for serving Nex-series models locally:
+> **Note:** For the best performance with Nex-series models, we recommend serving them with our customized `sglang` fork.
+
+First, install our `sglang` fork:
+
+```bash
+pip install "git+https://github.com/nex-agi/sglang.git"
+```
+
+Then launch the server:
 
 ```bash
 python -m sglang.launch_server --model-path /path/to/your/model
