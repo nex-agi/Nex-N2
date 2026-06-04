@@ -100,9 +100,7 @@ python -m sglang.launch_server \
   --dist-init-addr <node0-ip>:20000 \
   --reasoning-parser qwen3 \
   --tool-call-parser qwen3_coder \
-  --mamba-scheduler-strategy extra_buffer \
-  --enable-flashinfer-allreduce-fusion \
-  --mem-fraction-static 0.8
+  --mamba-scheduler-strategy extra_buffer
 ```
 
 #### Nex-N2-mini
@@ -115,8 +113,7 @@ python -m sglang.launch_server \
   --tp 2 \
   --reasoning-parser qwen3 \
   --tool-call-parser qwen3_coder \
-  --mamba-scheduler-strategy extra_buffer \
-  --enable-flashinfer-allreduce-fusion
+  --mamba-scheduler-strategy extra_buffer
 ```
 
 ### Recommended Sampling Parameters
