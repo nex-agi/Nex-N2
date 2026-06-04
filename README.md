@@ -75,13 +75,32 @@ Nex-N2 ships in two variants, both post-trained on the Qwen3.5 series: **Nex-N2-
 First, install our `sglang` fork:
 
 ```bash
-pip install "git+https://github.com/nex-agi/sglang.git"
+# Use the customized `sglang` fork
+git clone https://github.com/nex-agi/sglang.git
+cd sglang
+
+# Install the python packages
+pip install --upgrade pip
+pip install -e "python"
 ```
 
-Then launch the server:
+Then launch the server (example on two 8× H100 servers):
 
 ```bash
-python -m sglang.launch_server --model-path /path/to/your/model
+# Multi-node (2 nodes). Run the same command on every node with:
+#   <node-rank> = 0 on the head node, 1..1 on the others
+#   <node0-ip>  = IP of the head node (reachable from all others)
+sglang serve \
+  --model-path /path/to/your/model  \
+  --tp 16 \
+  --nnodes 2 \
+  --node-rank <node-rank> \
+  --dist-init-addr <node0-ip>:20000 \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder \
+  --mamba-scheduler-strategy extra_buffer \
+  --enable-flashinfer-allreduce-fusion \
+  --mem-fraction-static 0.8
 ```
 
 ### Recommended Sampling Parameters
