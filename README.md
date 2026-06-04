@@ -84,7 +84,7 @@ pip install --upgrade pip
 pip install -e "python"
 ```
 
-Then launch the server (example on two 8× H100 servers):
+Then launch the server (example on two 8× H100 servers with CUDA 13.0):
 
 ```bash
 # Multi-node (2 nodes). Run the same command on every node with:
