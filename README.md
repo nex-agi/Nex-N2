@@ -1,13 +1,13 @@
 <div align="center">
-  <img src="./figures/NEX_logo.svg" width="20%"/>
+<img src="./figures/NEX_logo.svg" width="20%"/>
 </div>
 
 ---
 
 <div align="center">
 🤗 <a href="https://hf.co/collections/nex-agi/nex-n2"><b>Model</b></a>&nbsp&nbsp | &nbsp&nbsp
-💻 <a href="GitHub - nex-agi/Nex-N2"><b>Github</b></a>&nbsp&nbsp | &nbsp&nbsp
-🧭 <a href="https://www.modelscope.cn/models/nex-agi/Nex-N2-Pro"><b>ModelScope</b></a>&nbsp&nbsp | &nbsp&nbsp
+💻 <a href="https://github.com/nex-agi/Nex-N2"><b>Github</b></a>&nbsp&nbsp | &nbsp&nbsp
+🧭 <a href="https://www.modelscope.cn/collections/nex-agi/Nex-N2"><b>ModelScope</b></a>&nbsp&nbsp | &nbsp&nbsp
 🚀 <a href="https://nex-agi.com"><b>Nex-AGI</b></a>
 </div>
 
@@ -28,10 +28,10 @@ Across real agentic workflows — agentic coding, deep research, tool calling, a
 
 ## Open Source
 
-In keeping with our commitment to open source, we are releasing **Nex-N2-Pro** starting today. **Nex-N2-Mini is not open-sourced at this time** and will be released in a future update.
+In keeping with our commitment to open source, we are releasing both **Nex-N2-Pro** and **Nex-N2-mini** as open-source models starting today.
 
 - **Nex-N2-Pro:** [Hugging Face](https://huggingface.co/nex-agi/Nex-N2-Pro) | [ModelScope](https://www.modelscope.cn/models/nex-agi/Nex-N2-Pro)
-- **Nex-N2-Mini:** Coming soon
+- **Nex-N2-mini:** [Hugging Face](https://huggingface.co/nex-agi/Nex-N2-mini) | [ModelScope](https://www.modelscope.cn/models/nex-agi/Nex-N2-mini)
 - **Early Access:** [SiliconFlow](https://cloud.siliconflow.cn/me/models?target=nex-agi%2FNex-N2-Pro)
 
 We welcome developers and enterprises to integrate and try Nex-N2 and share their feedback.
@@ -42,9 +42,9 @@ We evaluate Nex-N2 in real agentic workflows along three directions — agentic 
 
 ![Nex-N2 Benchmark Overview](./figures/Nex-N2-Benchmark-white.png)
 
-Nex-N2 ships in two variants, both post-trained on the Qwen3.5 series: **Nex-N2-Pro** (built on `Qwen3.5-397B-A17B`) and **Nex-N2-Mini** (built on `Qwen3.5-35B-A3B-Base`), covering different latency and quality trade-offs. The table below reports their scores alongside leading proprietary and open models across our full evaluation suite.
+Nex-N2 ships in two variants, both post-trained on the Qwen3.5 series: **Nex-N2-Pro** (built on `Qwen3.5-397B-A17B`) and **Nex-N2-mini** (built on `Qwen3.5-35B-A3B-Base`), covering different latency and quality trade-offs. The table below reports their scores alongside leading proprietary and open models across our full evaluation suite.
 
-| Benchmark | **Nex-N2-Mini** | **Nex-N2-Pro** | GPT-5.5 | Opus 4.7 | Kimi-K2.6 | GLM-5.1 | MiniMax M3 | DeepSeek-V4-Pro |
+| Benchmark | **Nex-N2-mini** | **Nex-N2-Pro** | GPT-5.5 | Opus 4.7 | Kimi-K2.6 | GLM-5.1 | MiniMax M3 | DeepSeek-V4-Pro |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Agent** |  |  |  |  |  |  |  |  |
 | BrowseComp | 74.1 | 83.7 | 84.4 | 79.8 | 83.2 | 79.3 | 83.5 | 83.4 |
@@ -84,13 +84,15 @@ pip install --upgrade pip
 pip install -e "python"
 ```
 
-Then launch the server (example on two 8× H100 servers with CUDA 13.0):
+#### Nex-N2-Pro
+
+Launch the server (example on two 8× H100 servers with CUDA 13.0):
 
 ```bash
 # Multi-node (2 nodes). Run the same command on every node with:
-#   <node-rank> = 0 on the head node, 1..1 on the others
+#   <node-rank> = 0 on the head node, 1 on the other node
 #   <node0-ip>  = IP of the head node (reachable from all others)
-sglang serve \
+python -m sglang.launch_server \
   --model-path /path/to/your/model  \
   --tp 16 \
   --nnodes 2 \
@@ -101,6 +103,20 @@ sglang serve \
   --mamba-scheduler-strategy extra_buffer \
   --enable-flashinfer-allreduce-fusion \
   --mem-fraction-static 0.8
+```
+
+#### Nex-N2-mini
+
+Launch the server (example on one 2× H100 server with CUDA 13.0):
+
+```bash
+python -m sglang.launch_server \
+  --model-path /path/to/your/model  \
+  --tp 2 \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder \
+  --mamba-scheduler-strategy extra_buffer \
+  --enable-flashinfer-allreduce-fusion
 ```
 
 ### Recommended Sampling Parameters
