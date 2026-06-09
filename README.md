@@ -8,7 +8,8 @@
 🤗 <a href="https://hf.co/collections/nex-agi/nex-n2"><b>Model</b></a>&nbsp&nbsp | &nbsp&nbsp
 💻 <a href="https://github.com/nex-agi/Nex-N2"><b>Github</b></a>&nbsp&nbsp | &nbsp&nbsp
 🧭 <a href="https://www.modelscope.cn/collections/nex-agi/Nex-N2"><b>ModelScope</b></a>&nbsp&nbsp | &nbsp&nbsp
-🚀 <a href="https://nex-agi.com"><b>Nex-AGI</b></a>
+🚀 <a href="https://nex-agi.com"><b>Nex-AGI</b></a>&nbsp&nbsp | &nbsp&nbsp
+🔀 <a href="https://openrouter.ai/nex-agi/Nex-N2-Pro:free"><b>OpenRouter (Enjoy two weeks free starting June 9!)</b></a>
 </div>
 
 # Nex-N2
